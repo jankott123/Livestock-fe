@@ -16,7 +16,7 @@ Frontend part is written in React with MUI. Backend Api's are written in PHP.
 
 ### Screenshots
 <img width="1728" alt="Snímek obrazovky 2022-08-22 v 15 03 11" src="https://user-images.githubusercontent.com/32278267/185928859-d7a94758-2310-4d5f-adc9-829031ca3348.png">
-
+** **
 <img width="1728" alt="Snímek obrazovky 2022-08-22 v 15 05 25" src="https://user-images.githubusercontent.com/32278267/185928882-0dee38fb-b96c-4e34-85d7-3ce90788025f.png">
 
 
