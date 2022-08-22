@@ -2,16 +2,16 @@
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
 
-Frontend part of web application for managing livestock.
+Frontend part for managing livestock project.
 
 ## Project description
 
-Livestock is web application for managing livestock and maintaing records of livestock.
+Managing livestock and maintaing records of livestock.
 Frontend part is written in React with MUI. Backend Api's are written in PHP. 
 
-* Create animal stable
+* Create animals stable
 * Keep records of animals
-* Tracking animal weight 
+* Tracking animals weight 
 
 
 ### Screenshots
