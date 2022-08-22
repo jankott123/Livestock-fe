@@ -217,7 +217,7 @@ export default function Zvire(props) {
 
           <Grid sx={{ display: "flex", flexDirection: "row", ml: 4 }} xs={12}>
             <Grid
-              sx={{ display: "flex", flexDirection: "column", mr: 10 }}
+              sx={{ display: "flex", flexDirection: "column", mr: 5 }}
               xs={4}
             >
               <InfoZvire zvire={zvire[0]}> </InfoZvire>
