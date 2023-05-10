@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -59,7 +59,7 @@ class SmazatStaj extends React.Component {
                 {" "}
                 Ne{" "}
               </Button>
-              <Button color="error" onClick={this.smazat}>
+              <Button color="error" onClick={(event) => this.smazat(event)}>
                 {" "}
                 Ano{" "}
               </Button>

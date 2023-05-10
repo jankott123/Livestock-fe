@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Authorization, { hasAccess } from "../../services/Authorization";
 import { Outlet, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -63,9 +63,9 @@ class StajVypis extends React.Component {
           <DataGrid
             rows={this.props.staje}
             columns={this.columns}
-            pageSize={10}
-            rowsPerPageOptions={[25]}
-            onSelectionModelChange={(newSelectionModel) => {
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            onRowClick={(newSelectionModel) => {
               this.props.oznacene_staje(newSelectionModel);
             }}
           />
@@ -75,4 +75,4 @@ class StajVypis extends React.Component {
   }
 }
 
-export default (StajVypis);
+export default StajVypis;

@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -11,7 +11,7 @@ import Authorization, { hasAccess } from "../../services/Authorization";
 import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 function SeznamZvirat(props) {
   const columns = [
@@ -64,8 +64,9 @@ function SeznamZvirat(props) {
           rows={props.zvirata}
           columns={columns}
           pageSize={5}
+          getRowId={props.zvirata.identifikacni_cislo}
           rowsPerPageOptions={[25]}
-          onSelectionModelChange={(newSelectionModel) => {
+          onRowClick={(newSelectionModel) => {
             props.oznaceniZvire(newSelectionModel);
           }}
         />

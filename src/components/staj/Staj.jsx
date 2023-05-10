@@ -1,6 +1,6 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import Authorization, { hasAccess } from "../../services/Authorization";
 import StajPridat from "./StajPridat";
 import SmazatStaj from "./SmazatStaj";
@@ -11,6 +11,12 @@ import { Typography } from "@mui/material";
 import { Divider } from "@mui/material";
 import { withStyles } from "@mui/styles";
 
+const styles = {
+  fabStyle: {
+    height: "5",
+    width: "10",
+  },
+};
 class Staj extends React.Component {
   state = {
     staj: [],
@@ -62,7 +68,7 @@ class Staj extends React.Component {
     await hasAccess();
 
     fetch(
-      process.env.REACT_APP_APISERVER + "staj/" + this.state.oznacene_staje,
+      process.env.REACT_APP_APISERVER + "staj/" + this.state.oznacene_staje.id,
       {
         method: "DELETE",
         credentials: "include",

@@ -8,9 +8,9 @@ import Typography from "@mui/material/Typography";
 import ListItem from "@mui/material/ListItem";
 import { Outlet, Link } from "react-router-dom";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import HomeIcon from "@material-ui/icons/Home";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-import InsertChartIcon from '@mui/icons-material/InsertChart';
+import HomeIcon from "@mui/icons-material/Home";
+import { ThemeProvider, createTheme } from "@mui/material";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
 import { withStyles } from "@mui/styles";
 
 const styles = {
@@ -22,24 +22,26 @@ const styles = {
 
 class SideBox extends React.Component {
   render() {
-
-    
     return (
       <Box sx={{ display: "flex" }}>
-       
-          <AppBar
-            position="fixed"
-            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 , backgroundColor:"#008000"}}
-          >
-            <Toolbar>
-              <Typography variant="h5" component="div" sx={{textAlign:"left", flexGrow: 1 }}>
-                Evidence chovného dobytka
-              </Typography>
-              
-              
-            </Toolbar>
-          </AppBar>
-      
+        <AppBar
+          position="fixed"
+          sx={{
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            backgroundColor: "#008000",
+          }}
+        >
+          <Toolbar>
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{ textAlign: "left", flexGrow: 1 }}
+            >
+              Evidence chovného dobytka
+            </Typography>
+          </Toolbar>
+        </AppBar>
+
         <Drawer
           variant="permanent"
           sx={{
@@ -51,31 +53,38 @@ class SideBox extends React.Component {
           <Toolbar />
           <Box sx={{ overflow: "auto" }}>
             <List>
-            <ListItem component={Link} to={"/prehled"} button>
+              <ListItem key={1} component={Link} to={"/prehled"}>
                 {" "}
-                <ListItemIcon sx={{mr:-1}}>
+                <ListItemIcon sx={{ mr: -1 }}>
                   <InsertChartIcon />
                 </ListItemIcon>
                 <Typography sx={{ fontSize: 18 }}>Přehled</Typography>
               </ListItem>
 
-              <ListItem component={Link} to={"/staj"} button>
+              <ListItem key={2} component={Link} to={"/staj"}>
                 {" "}
-                <ListItemIcon sx={{mr:-1}}>
+                <ListItemIcon sx={{ mr: -1 }}>
                   <HomeIcon />
                 </ListItemIcon>
                 <Typography sx={{ fontSize: 18 }}>Stáje</Typography>
               </ListItem>
 
-              <ListItem component={Link} to={"/zvirata"} button>
+              <ListItem
+                key={3}
+                onClick={() => {
+                  window.location.href = "/zvirata";
+                }}
+              >
                 {" "}
-                <ListItemIcon sx={{mr:-1}} >
-                  <img src={process.env.PUBLIC_URL + '/animal.png'} alt="zvire" style={{ height: 20 }} />
+                <ListItemIcon sx={{ mr: -1 }}>
+                  <img
+                    src={process.env.PUBLIC_URL + "/animal.png"}
+                    alt="zvire"
+                    style={{ height: 20 }}
+                  />
                 </ListItemIcon>
                 <Typography sx={{ fontSize: 18 }}>Zvířata </Typography>{" "}
               </ListItem>
-
-          
             </List>
           </Box>
         </Drawer>
@@ -88,4 +97,4 @@ class SideBox extends React.Component {
   }
 }
 
-export default withStyles(styles)(SideBox);
+export default SideBox;

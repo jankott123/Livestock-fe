@@ -21,7 +21,7 @@ class AppWrapper extends React.Component {
   render() {
     return (
       <div>
-      <SideBox> </SideBox>
+        <SideBox> </SideBox>
       </div>
     );
   }

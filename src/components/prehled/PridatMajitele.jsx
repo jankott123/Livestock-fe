@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import Authorization, { hasAccess } from "../../services/Authorization";
 import Fab from "@mui/material/Fab";
 import EditIcon from "@mui/icons-material/Edit";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 

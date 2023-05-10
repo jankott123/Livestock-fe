@@ -12,31 +12,33 @@ import Majitel from "./Majitel";
 import PridatMajitele from "./PridatMajitele";
 import { withStyles } from "@mui/styles";
 
-
-
 function Prehled(props) {
   const { classes } = props;
   const [majitel, setMajitel] = useState(null);
   const [majitel2, setMajitel2] = useState(null);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
-    await hasAccess();
-    fetch(process.env.REACT_APP_APISERVER + "uzivatel", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => {
-        return res.json();
+  useEffect(() => {
+    async function acces() {
+      await hasAccess();
+      fetch(process.env.REACT_APP_APISERVER + "uzivatel", {
+        method: "GET",
+        credentials: "include",
       })
-      .then((data) => {
-        setMajitel(data[0]);
-        var array = Object.keys(data[0]).map(function (key) {
-          return data[0][key];
-        });
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setMajitel(data[0]);
+          var array = Object.keys(data[0]).map(function (key) {
+            return data[0][key];
+          });
 
-        setMajitel2(array);
-      });
+          setMajitel2(array);
+        });
+    }
+    acces();
+    return;
   }, []);
 
   async function editovatMajitele(event) {
@@ -57,7 +59,6 @@ function Prehled(props) {
         });
 
         setMajitel2(array);
-
       });
   }
 
@@ -128,7 +129,7 @@ function Prehled(props) {
           </Box>
         </Box>
 
-        <Box sx={{ mt: 3, ml: 10}}>
+        <Box sx={{ mt: 3, ml: 10 }}>
           <Typography
             sx={{
               fontSize: 20,
@@ -142,14 +143,14 @@ function Prehled(props) {
           </Typography>
 
           <Divider></Divider>
-          <Box sx={{width: 420, ml:0 }}> 
-          <GrafStaje> </GrafStaje>
-          </Box> 
+          <Box sx={{ width: 420, ml: 0 }}>
+            <GrafStaje> </GrafStaje>
+          </Box>
         </Box>
       </Grid>
 
       <Grid lg={12} sx={{ display: "flex", flexDirection: "row", mb: 5 }}>
-        <Box sx={{ ml: 4}}>
+        <Box sx={{ ml: 4 }}>
           <Typography
             sx={{
               fontSize: 20,
@@ -162,11 +163,11 @@ function Prehled(props) {
             Přehled zastoupení jednotlivých druhů:{" "}
           </Typography>
           <Divider></Divider>
-          <Box sx={{width: 350, ml:5 }}> 
-          <GrafZastoupeni> </GrafZastoupeni>{" "}
+          <Box sx={{ width: 350, ml: 5 }}>
+            <GrafZastoupeni> </GrafZastoupeni>{" "}
           </Box>
         </Box>
-        <Box sx={{ ml: 18}}>
+        <Box sx={{ ml: 18 }}>
           <Typography
             sx={{
               fontSize: 20,
@@ -179,8 +180,8 @@ function Prehled(props) {
             Dojená zvířata:{" "}
           </Typography>
           <Divider></Divider>
-          <Box sx={{width: 370, ml:0 }}> 
-          <GrafDojene> </GrafDojene>
+          <Box sx={{ width: 370, ml: 0 }}>
+            <GrafDojene> </GrafDojene>
           </Box>
         </Box>
       </Grid>
@@ -188,4 +189,4 @@ function Prehled(props) {
   );
 }
 
-export default (Prehled);
+export default Prehled;

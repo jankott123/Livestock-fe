@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import FormControl from "@mui/material/FormControl";
 import Authorization, { hasAccess } from "../../services/Authorization";
 import { useState, useEffect } from "react";
@@ -17,7 +17,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { red } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 
 function StajPridatZvire(props) {
   const [value, setValue] = useState(Date());
@@ -37,7 +37,7 @@ function StajPridatZvire(props) {
   const skot = ["dojnice", "jalovice", "tele", "býk"];
   const textFieldsName = ["matka", "otec"];
   const textFieldsLabel = ["Matka", "Otec"];
- 
+
   const handleChange2 = (event) => {
     setPohlavi(event.target.value);
   };
@@ -96,7 +96,7 @@ function StajPridatZvire(props) {
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                width:800,
+                width: 800,
               }}
             >
               <Box
@@ -107,7 +107,7 @@ function StajPridatZvire(props) {
                   mb: 2,
                   display: "flex",
                   flexDirection: "column",
-                  width:350,
+                  width: 350,
                 }}
               >
                 <TextField
@@ -159,7 +159,14 @@ function StajPridatZvire(props) {
                 </TextField>
               </Box>
 
-              <Box sx={{ mt: 2, display: "flex", flexDirection: "column",   width:450 }}>
+              <Box
+                sx={{
+                  mt: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  width: 450,
+                }}
+              >
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DesktopDatePicker
                     label="Datum narození zvířete"
@@ -180,7 +187,7 @@ function StajPridatZvire(props) {
                     margin="normal"
                   />
                 ))}
-                
+
                 <TextField
                   sx={{ display: "none" }}
                   className="prihlasovaciLabel"

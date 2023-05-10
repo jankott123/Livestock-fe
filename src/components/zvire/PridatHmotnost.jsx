@@ -5,7 +5,7 @@ import Authorization, { hasAccess } from "../../services/Authorization";
 import Graf from "./Graf";
 import Grid from "@mui/material/Grid";
 import { Box, Typography } from "@mui/material";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
@@ -26,8 +26,7 @@ export default function PridatHmotnost(props) {
       <Button
         onClick={() => setOpen(!open)}
         variant="contained"
-        color = "success"
-       
+        color="success"
       >
         Přidat záznam
       </Button>
@@ -41,11 +40,11 @@ export default function PridatHmotnost(props) {
             justifyContent: "space-between",
           }}
         >
-          <Box sx={{ mt: 2,}}>
+          <Box sx={{ mt: 2 }}>
             <Typography
               sx={{
                 textAlign: "center",
-                ml:10,
+                ml: 10,
                 fontSize: 26,
                 fontWeight: "bold",
               }}
@@ -65,10 +64,8 @@ export default function PridatHmotnost(props) {
             </CloseIcon>{" "}
           </Typography>
         </Box>
-
-        <form method="POST" onSubmit={(e) => props.pridatHmotnost(e,props.id)}>
+        <form method="POST" onSubmit={(e) => props.pridatHmotnost(e, props.id)}>
           <FormControl sx={{ m: 2 }}>
-         
             <TextField
               className="prihlasovaciLabel"
               id="outlined-basic"
@@ -91,17 +88,17 @@ export default function PridatHmotnost(props) {
             <br />
 
             <TextField
-                  sx={{ display: "none" }}
-                  className="prihlasovaciLabel"
-                  id="outlined-basic"
-                  label="datum"
-                  variant="outlined"
-                  name="datum"
-                  value={value}
-                />
+              sx={{ display: "none" }}
+              className="prihlasovaciLabel"
+              id="outlined-basic"
+              label="datum"
+              variant="outlined"
+              name="datum"
+              value={value}
+            />
 
             <Button
-              sx={{  }}
+              sx={{}}
               onClick={() => setOpen(!open)}
               type="submit"
               color="success"

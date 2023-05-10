@@ -1,36 +1,32 @@
 import { isExpired, useJwt, decodeToken } from "react-jwt";
 import Cookies from "universal-cookie";
 
-export function  hasAccess() {
-  let BaseURL = process.env.REACT_APP_APISERVER+"refresh";
+export function hasAccess() {
+  let BaseURL = process.env.REACT_APP_APISERVER + "refresh";
   const cookies = new Cookies();
-  const accessToken = cookies.get('accesstoken');
-  
+  const accessToken = cookies.get("accesstoken");
 
- if(accessToken !== undefined ){
+  if (accessToken !== undefined) {
+    const token = decodeToken(accessToken);
+    const iat = token.iat;
+    const rozdil = Date.now() / 1000 - iat;
 
-  const token =  decodeToken(accessToken);
-  const iat = token.iat;
-  const rozdil = (Date.now() / 1000) - iat;
-
-  if(rozdil > 9){
-    return new Promise((resolve, reject) => {
-      fetch(BaseURL, {
-        method: "POST",
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((res) => {
-            resolve(res);
+    if (rozdil > 5) {
+      return new Promise((resolve, reject) => {
+        fetch(BaseURL, {
+          method: "POST",
+          credentials: "include",
         })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+          .then((response) => response.json())
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    }
   }
-    
-  }
-
 
   if (accessToken === undefined) {
     return new Promise((resolve, reject) => {
@@ -40,23 +36,15 @@ export function  hasAccess() {
       })
         .then((response) => response.json())
         .then((res) => {
-            resolve(res);
+          resolve(res);
         })
         .catch((error) => {
           reject(error);
         });
     });
-  }
-  else{
-  return new Promise((resolve, reject) => {
-
-
-    resolve();
-})
-
+  } else {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
   }
 }
-
-
-
-  

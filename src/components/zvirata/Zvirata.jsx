@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { Box, Typography } from "@mui/material";
-import { createTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { fontSize } from "@mui/system";
 import GrafZastoupeni from "./GrafZastoupeni";
 import GrafDojene from "./GrafDojene";
@@ -19,11 +19,10 @@ const styles = {
   },
 };
 
-function Zvirata (props) {
-
+function Zvirata(props) {
   return (
     <div>
-      <Grid sx={{ mt: 8, ml: 0, mb: 4 }} lg={12}>
+      <Grid sx={{ mt: 8, ml: 0, mb: 4 }} item lg={12}>
         <Typography
           sx={{ fontSize: 22, fontFamily: "Helvetica", textAlign: "left" }}
         >
@@ -33,7 +32,7 @@ function Zvirata (props) {
         <Divider></Divider>
       </Grid>
 
-      <Grid sx={{ mt: 2, ml: 0, mb: 4 }} lg={12}>
+      <Grid sx={{ mt: 2, ml: 0, mb: 4 }} item lg={12}>
         <Box sx={{ mt: 4 }}>
           <Typography
             sx={{ fontSize: 20, fontFamily: "Helvetica", textAlign: "left" }}
@@ -42,15 +41,13 @@ function Zvirata (props) {
             Seznam všech chovaných zvířat:{" "}
           </Typography>
           <Divider></Divider>
-        <Box sx={{mt:3}}>  
-          <SeznamZvirat> </SeznamZvirat>{" "}
-
-        </Box> 
+          <Box sx={{ mt: 3 }}>
+            <SeznamZvirat> </SeznamZvirat>{" "}
+          </Box>
         </Box>
       </Grid>
 
-
-      <Grid sx={{ display: "flex", flexDirection: "row",  mb: 5 }}>
+      <Grid sx={{ display: "flex", flexDirection: "row", mb: 5 }}>
         <Box sx={{ ml: 3, width: 600 }}>
           <Typography
             sx={{ fontSize: 20, fontFamily: "Helvetica", textAlign: "left" }}
@@ -73,12 +70,7 @@ function Zvirata (props) {
         </Box>
       </Grid>
 
-
-
-
-   
-
-      <Grid sx={{ mt: 8, ml: 8, mb: 4 }} lg={12}></Grid>
+      <Grid sx={{ mt: 8, ml: 8, mb: 4 }} item lg={12}></Grid>
     </div>
   );
 }

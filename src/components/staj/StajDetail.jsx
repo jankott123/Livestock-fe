@@ -60,7 +60,7 @@ function StajDetail(props) {
 
   async function smazatZvire(event) {
     await hasAccess();
-    fetch(process.env.REACT_APP_APISERVER + "zvire/" + zvireId, {
+    fetch(process.env.REACT_APP_APISERVER + "zvire/" + zvireId.id, {
       method: "DELETE",
       credentials: "include",
     })
@@ -70,20 +70,24 @@ function StajDetail(props) {
       });
   }
 
-  useEffect(async () => {
-    await hasAccess();
+  useEffect(() => {
+    async function acces() {
+      await hasAccess();
 
-    fetch(process.env.REACT_APP_APISERVER + "staj/" + location.state.id, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => {
-        return res.json();
+      fetch(process.env.REACT_APP_APISERVER + "staj/" + location.state.id, {
+        method: "GET",
+        credentials: "include",
       })
-      .then((data) => {
-        setZvirata(data);
-        setshowPage(true);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setZvirata(data);
+          setshowPage(true);
+        });
+    }
+    acces();
+    return;
   }, []);
 
   return (

@@ -11,7 +11,7 @@ import PridatHmotnost from "./PridatHmotnost";
 import Editace from "./Editace";
 import Grid from "@mui/material/Grid";
 import { Box, Typography } from "@mui/material";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import SmazatHmotnost from "./SmazatHmotnost";
 
 export default function Zvire(props) {
@@ -146,54 +146,60 @@ export default function Zvire(props) {
       });
   }
 
-  useEffect(async () => {
-    await hasAccess();
+  useEffect(() => {
+    async function acces() {
+      await hasAccess();
 
-    const Mypromise = new Promise((resolve, reject) =>
-      fetch(process.env.REACT_APP_APISERVER + "hmotnost/" + location.state.id, {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => {
-          return res.json();
+      const Mypromise = new Promise((resolve, reject) =>
+        fetch(
+          process.env.REACT_APP_APISERVER + "hmotnost/" + location.state.id,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            resolve(data);
+          })
+      );
+
+      Mypromise.then(function (result) {
+        var arr = [];
+        for (var i = 0; i < result.length; i++) {
+          var date = new Date(result[i].datum.date);
+          let formatted_date =
+            date.getDate() +
+            "." +
+            (date.getMonth() + 1) +
+            "." +
+            date.getFullYear();
+
+          const graf_hodnoty = {
+            id: result[i].id,
+            datum: formatted_date,
+            hmotnost: result[i].hmotnost,
+          };
+          arr[i] = graf_hodnoty;
+        }
+
+        setHmotnost2(arr);
+      }).then(function (result) {
+        fetch(process.env.REACT_APP_APISERVER + "zvire/" + location.state.id, {
+          method: "GET",
+          credentials: "include",
         })
-        .then((data) => {
-          resolve(data);
-        })
-    );
-
-    Mypromise.then(function (result) {
-      var arr = [];
-      for (var i = 0; i < result.length; i++) {
-        var date = new Date(result[i].datum.date);
-        let formatted_date =
-          date.getDate() +
-          "." +
-          (date.getMonth() + 1) +
-          "." +
-          date.getFullYear();
-
-        const graf_hodnoty = {
-          id: result[i].id,
-          datum: formatted_date,
-          hmotnost: result[i].hmotnost,
-        };
-        arr[i] = graf_hodnoty;
-      }
-
-      setHmotnost2(arr);
-    }).then(function (result) {
-      fetch(process.env.REACT_APP_APISERVER + "zvire/" + location.state.id, {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setZvire(data);
-        });
-    });
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            setZvire(data);
+          });
+      });
+    }
+    acces();
   }, []);
 
   return (

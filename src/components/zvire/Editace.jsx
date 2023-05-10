@@ -2,7 +2,7 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -158,7 +158,7 @@ export default function Editace(props) {
                     margin="normal"
                   />
                 ))}
-                
+
                 <TextField
                   sx={{ display: "none" }}
                   className="prihlasovaciLabel"

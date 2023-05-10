@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
-import Dialog from "@material-ui/core/Dialog";
+import Dialog from "@mui/material/Dialog";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -11,24 +11,27 @@ import Authorization, { hasAccess } from "../../services/Authorization";
 import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 function SeznamZvirat(props) {
   const [zvirata, setZvirata] = useState(null);
 
-  useEffect(async () => {
-    await hasAccess();
+  useEffect(() => {
+    async function acces() {
+      await hasAccess();
 
-    fetch(process.env.REACT_APP_APISERVER + "vsechnaZvirataUzivatele", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => {
-        return res.json();
+      fetch(process.env.REACT_APP_APISERVER + "vsechnaZvirataUzivatele", {
+        method: "GET",
+        credentials: "include",
       })
-      .then((data) => {
-        setZvirata(data);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setZvirata(data);
+        });
+    }
+    acces();
   }, []);
 
   const columns = [
@@ -54,21 +57,21 @@ function SeznamZvirat(props) {
           }}
         >
           {" "}
-          <div> 
-          <Button
-            sx={{
-              backgroundColor: "info.light",
-              color: "white",
-              ml: 4,
-              ":hover": {
-                bgcolor: "primary.main",
+          <div>
+            <Button
+              sx={{
+                backgroundColor: "info.light",
                 color: "white",
-              },
-            }}
-          >
-            {" "}
-            <Typography sx={{ fontSize: 14 }}>Zobrazit Zvíře</Typography>{" "}
-          </Button>{" "}
+                ml: 4,
+                ":hover": {
+                  bgcolor: "primary.main",
+                  color: "white",
+                },
+              }}
+            >
+              {" "}
+              <Typography sx={{ fontSize: 14 }}>Zobrazit Zvíře</Typography>{" "}
+            </Button>{" "}
           </div>
         </Link>
       ),
@@ -78,7 +81,6 @@ function SeznamZvirat(props) {
   return (
     <div>
       <div style={{ height: 600, width: "100%" }}>
-
         {zvirata !== null ? (
           <DataGrid
             rows={zvirata}
